@@ -4,7 +4,7 @@
 [ext_resource path="res://Environment/Grid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/Gameplay/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/Stars Particles.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Environment/Enemy/Projectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/EnemySpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Levels/main.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -15,7 +15,10 @@ script = ExtResource( 6 )
 UI_ref = NodePath("../Main/Player/Camera2D/CenterContainer/UI")
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
-modulate = Color( 1, 1, 1, 0.54902 )
+self_modulate = Color( 1, 1, 1, 0.486275 )
+
+[node name="EnemySpawner" parent="Grid" instance=ExtResource( 5 )]
+Player_Path = NodePath("../../Player")
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 64, -64 )
@@ -64,6 +67,3 @@ margin_top = -540.0
 margin_right = 960.0
 margin_bottom = 540.0
 player_reference = NodePath("../../..")
-
-[node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 192, -192 )
