@@ -18,8 +18,5 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
