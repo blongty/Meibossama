@@ -36,5 +36,13 @@ func _on_player_destroyed():
 	game_over()
 
 func game_over():
-	UI.button_enable(false)
+	# Write to file high score
 	start_scoring(false)
+	var highscore_file = File.new()
+	highscore_file.open("res://high_score.txt", File.WRITE)
+	highscore_file.store_string(str(get_score()))
+	highscore_file.close()
+	
+	# End user control
+	UI.button_enable(false)
+	
