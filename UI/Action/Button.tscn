@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Action/Button.gd" type="Script" id=1]
+[ext_resource path="res://Art/down arrow.png" type="Texture" id=2]
+[ext_resource path="res://Art/up arrow.png" type="Texture" id=3]
+[ext_resource path="res://Art/right arrow.png" type="Texture" id=4]
+[ext_resource path="res://Art/left arrow.png" type="Texture" id=5]
 
 [node name="Button" type="Button"]
-modulate = Color( 0.576471, 0.298039, 0.298039, 1 )
 margin_right = 256.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 128 )
+expand_icon = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+arrow_icons = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]

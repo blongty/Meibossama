@@ -3,7 +3,6 @@ extends KinematicBody2D
 export(NodePath) var tilemap_reference
 export(bool) var debug_movement
 export(NodePath) var sprite_ref
-export(NodePath) var UI_ref
 
 var location = Vector2()
 var speed = 128
@@ -11,14 +10,14 @@ var pos = Vector2(0,0)
 
 var map
 var sprite
-var UI
+var root
 
-signal destroyed
+signal player_destroyed
 
 func _ready():
+	root = get_tree().get_current_scene()
 	map = get_node(tilemap_reference)
 	sprite = get_node(sprite_ref)
-	UI = get_node(UI_ref)
 	
 	if map != null:
 		location = map.map_to_world(Vector2(0,0)) + Vector2(64, 64)
@@ -26,14 +25,11 @@ func _ready():
 	else:
 		location == get_position()
 		print("Warning: If player is in actual game, make sure Tilemap Reference is assigned, otherwise grid generation will not function.")
-		
-	if UI == null:
-		print("Warning: Action button reference not assigned on main scene.")
-	else:
-		connect("destroyed", UI, "_on_player_destroyed")
 	
 	if sprite == null:
 		print("Warning: Sprite reference on player not assigned. Will cause unexpected behavior when destroyed in main scene.")
+	
+	connect("player_destroyed", root, "_on_player_destroyed")
 
 func _physics_process(delta):
 	if debug_movement:
@@ -71,5 +67,5 @@ func move_right():
 	set_position(location)
 
 func _on_hitbox_area_entered(area):
-	emit_signal("destroyed")
+	emit_signal("player_destroyed")
 	sprite.set_visible(false)

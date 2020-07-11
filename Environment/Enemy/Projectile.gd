@@ -20,7 +20,7 @@ func move_up():
 func move_down():
 	direction.y = 1
 
-func move_op_right():
+func move_right():
 	direction.x = 1
 
 func move_left():
