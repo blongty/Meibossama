@@ -2,12 +2,17 @@ extends Button
 
 var player
 var ui_root
+var enabled = false
 
 func _ready():
+	enabled = true
 	ui_root = get_parent()
 	player = ui_root.get_node(ui_root.player_reference)
 
 func _on_Button_pressed():
+	if !enabled:
+		return
+		
 	var choice
 	
 	# Generate a integer between 1 and 4 inclusively
@@ -32,3 +37,6 @@ func _on_Button_pressed():
 	elif choice == 4:
 		player.move_left()
 		print('moved left')
+		
+func enable(b: bool):
+	enabled = b

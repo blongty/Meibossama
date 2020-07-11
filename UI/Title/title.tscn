@@ -1,33 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/Title/f2-tecnocratica-ffp.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Title/Button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/Theme/main.tres" type="Theme" id=3]
 [ext_resource path="res://UI/Title/title.gd" type="Script" id=4]
-
-[sub_resource type="ParticlesMaterial" id=2]
-emission_shape = 2
-emission_box_extents = Vector3( 960, 540, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 1.0
-orbit_velocity = -0.01
-orbit_velocity_random = 1.0
-scale = 8.0
-
-[sub_resource type="ParticlesMaterial" id=3]
-emission_shape = 2
-emission_box_extents = Vector3( 960, 540, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-orbit_velocity = 0.01
-orbit_velocity_random = 1.0
-scale = 8.0
+[ext_resource path="res://UI/Stars Particles.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -50,15 +27,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Particles2D" type="Particles2D" parent="Panel"]
+[node name="Ambient Stars" parent="Panel" instance=ExtResource( 5 )]
 position = Vector2( 960, 540 )
-amount = 120
-process_material = SubResource( 2 )
-
-[node name="Particles2D2" type="Particles2D" parent="Panel"]
-position = Vector2( 960, 540 )
-amount = 120
-process_material = SubResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 anchor_right = 1.0
@@ -76,7 +46,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
 margin_left = 679.0
 margin_right = 1240.0
-margin_bottom = 1080.0
+margin_bottom = 1079.0
 custom_constants/separation = 50
 alignment = 1
 __meta__ = {
