@@ -1,0 +1,221 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+var enemy = preload(\"res://Environment/Enemy/Projectile.tscn\")
+
+func _ready():
+	randomize()
+	
+
+func _on_respawnTimer_timeout():
+	var location = Vector2()
+	var rng = randi()%4 +1
+	var playerLoc = get_global_position()
+	
+	
+	var e = enemy.instance()
+	add_child(e)
+	location=randomTopSpawn(playerLoc)
+	e.position = location
+	e.move_down() #enemy should move in this direction once it is spawned
+	
+	
+#	if rng == 1: #1 = top spawn
+#		location=randomTopSpawn(playerLoc)
+#		e.position = location
+#		e.move_down() #enemy should move in this direction once it is spawned
+#	elif rng == 2: #2 = bottom spawn
+#		location=randomBottomSpawn(playerLoc)
+#		e.position = location
+#		e.move_up()
+#	elif rng == 3: #3 = left spawn
+#		location=randomLeftSpawn(playerLoc)
+#		e.position = location
+#		e.move_right()
+#	elif rng == 4: #4 = right spawn
+#		location=randomRightSpawn(playerLoc)
+#		e.position = location
+#		e.move_left()
+	
+	$respawnTimer.wait_time = max(.01, $respawnTimer.wait_time - .001)
+	
+	
+	
+func randomTopSpawn(playerLoc):
+	var rngCell = randi()%8 +1
+	var location = Vector2()
+	
+	
+	if rngCell == 1:
+		location.x = playerLoc.x+64
+		location.y = playerLoc.y-640
+	
+	elif rngCell == 2:
+		location.x = playerLoc.x+192
+		location.y = playerLoc.y-640
+	
+	elif rngCell == 3:
+		location.x = playerLoc.x+320
+		location.y = playerLoc.y-640
+	
+	elif rngCell == 4:
+		location.x = playerLoc.x+448
+		location.y = playerLoc.y-640
+	
+	elif rngCell == 5:
+		location.x = playerLoc.x+576
+		location.y = playerLoc.y-640
+	
+	elif rngCell == 6:
+		location.x = playerLoc.x+704
+		location.y = playerLoc.y-640
+
+	elif rngCell == 7:
+		location.x = playerLoc.x+832
+		location.y = playerLoc.y-640
+		
+	elif rngCell == 8:
+		location.x = playerLoc.x+960
+		location.y = playerLoc.y-640
+	
+	return(location)
+	
+func randomBottomSpawn(playerLoc):
+	var rngCell = randi()%8 +1
+	var location = Vector2()
+	
+	if rngCell == 1:
+		location.x = 64
+		location.y = 640
+	
+	elif rngCell == 2:
+		location.x = 192
+		location.y = 640
+	
+	elif rngCell == 3:
+		location.x = 320
+		location.y = 640
+	
+	elif rngCell == 4:
+		location.x = 448
+		location.y = 640
+	
+	elif rngCell == 5:
+		location.x = 576
+		location.y = 640
+	
+	elif rngCell == 6:
+		location.x = 704
+		location.y = 640
+
+	elif rngCell == 7:
+		location.x = 832
+		location.y = 640
+		
+	elif rngCell == 8:
+		location.x = 960
+		location.y = 640
+	
+	return(location)
+	
+func randomLeftSpawn(playerLoc):
+	var rngCell = randi()%10 +1
+	var location = Vector2()
+	
+	if rngCell == 1:
+		location.y = 64
+		location.x = -640
+	
+	elif rngCell == 2:
+		location.y = 192
+		location.x = -640
+	
+	elif rngCell == 3:
+		location.y = 320
+		location.x = -640
+	
+	elif rngCell == 4:
+		location.y = 448
+		location.x = -640
+	
+	elif rngCell == 5:
+		location.y = 576
+		location.x = -640
+	
+	elif rngCell == 6:
+		location.y = 704
+		location.x = -640
+
+	elif rngCell == 7:
+		location.y = 832
+		location.x = -640
+		
+	elif rngCell == 8:
+		location.y = 960
+		location.x = -640
+
+	elif rngCell == 9:
+		location.y = 1088
+		location.x = -640
+
+	elif rngCell == 10:
+		location.y = 1216
+		location.x = -640
+
+	return(location)
+	
+func randomRightSpawn(playerLoc):
+	var rngCell = randi()%10 +1
+	var location = Vector2()
+	
+	if rngCell == 1:
+		location.y = 64
+		location.x = 640
+	
+	elif rngCell == 2:
+		location.y = 192
+		location.x = 640
+	
+	elif rngCell == 3:
+		location.y = 320
+		location.x = 640
+	
+	elif rngCell == 4:
+		location.y = 448
+		location.x = 640
+	
+	elif rngCell == 5:
+		location.y = 576
+		location.x = 640
+	
+	elif rngCell == 6:
+		location.y = 704
+		location.x = 640
+
+	elif rngCell == 7:
+		location.y = 832
+		location.x = 640
+		
+	elif rngCell == 8:
+		location.y = 960
+		location.x = 640
+
+	elif rngCell == 9:
+		location.y = 1088
+		location.x = 640
+
+	elif rngCell == 10:
+		location.y = 1216
+		location.x = 640
+
+	return(location)
+"
+
+[node name="EnemySpawner" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="respawnTimer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="respawnTimer" to="." method="_on_respawnTimer_timeout"]
