@@ -2,16 +2,18 @@
 
 [ext_resource path="res://UI/Action/Button.gd" type="Script" id=1]
 
-[node name="Control" type="Control"]
+[node name="Button" type="Button"]
+modulate = Color( 0.576471, 0.298039, 0.298039, 1 )
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Button" type="Button" parent="."]
-modulate = Color( 0.576471, 0.298039, 0.298039, 1 )
-margin_right = 204.0
-margin_bottom = 68.0
+margin_left = 738.898
+margin_top = 440.688
+margin_right = 942.898
+margin_bottom = 508.688
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]
