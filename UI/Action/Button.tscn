@@ -4,14 +4,9 @@
 
 [node name="Button" type="Button"]
 modulate = Color( 0.576471, 0.298039, 0.298039, 1 )
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 738.898
-margin_top = 440.688
-margin_right = 942.898
-margin_bottom = 508.688
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 128 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

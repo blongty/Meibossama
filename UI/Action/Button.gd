@@ -1,13 +1,13 @@
 extends Button
 
-export(NodePath) var player_reference
 var player
+var ui_root
 
 func _ready():
-	player = get_node(player_reference)
+	ui_root = get_parent()
+	player = ui_root.get_node(ui_root.player_reference)
 
 func _on_Button_pressed():
-	set_modulate(Color.red)
 	var choice
 	
 	# Generate a integer between 1 and 4 inclusively
@@ -16,14 +16,19 @@ func _on_Button_pressed():
 	# If 1, print something
 	if choice == 1:
 		player.move_up()
+		print('moved up')
 	
 	# Else if 2, print something else
-	elif choice ==2:
+	elif choice == 2:
 		player.move_down()
+		print('moved down')
+	
 	# else if 3, print something else
-	elif choice ==3: 
+	elif choice == 3: 
 		player.move_right()
+		print('moved right')
 	
 	# else if 4, do something eauingjkaeng
-	elif choice ==4:
+	elif choice == 4:
 		player.move_left()
+		print('moved left')
