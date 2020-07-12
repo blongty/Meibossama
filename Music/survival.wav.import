@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/survival.wav-5d1a850df5aa8936b29dc1d4f5430dc7.sample"
+
+[deps]
+
+source_file="res://Music/survival.wav"
+dest_files=[ "res://.import/survival.wav-5d1a850df5aa8936b29dc1d4f5430dc7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

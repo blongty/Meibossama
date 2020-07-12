@@ -99,6 +99,7 @@ func move_right():
 
 func _on_hitbox_area_entered(area):
 	emit_signal("player_destroyed")
+	get_node("SEDeath").play()
 	sprite.set_visible(false)
 	
 func rotate_right_sprite():

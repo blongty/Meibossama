@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/Title/f2-tecnocratica-ffp.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://SE/button_click.wav" type="AudioStream" id=2]
 [ext_resource path="res://UI/Title/Audio.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -18,5 +19,7 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "SE"
 script = ExtResource( 3 )
 [connection signal="pressed" from="." to="AudioStreamPlayer" method="_on_Button_pressed"]

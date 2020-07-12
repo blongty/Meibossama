@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/Action/Button.gd" type="Script" id=1]
 [ext_resource path="res://Art/down arrow.png" type="Texture" id=2]
 [ext_resource path="res://Art/up arrow.png" type="Texture" id=3]
 [ext_resource path="res://Art/right arrow.png" type="Texture" id=4]
 [ext_resource path="res://Art/left arrow.png" type="Texture" id=5]
+[ext_resource path="res://SE/action.wav" type="AudioStream" id=6]
 [ext_resource path="res://UI/Title/Audio.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.501961, 0.866667, 0.372549, 1 )
+bg_color = Color( 0.74902, 1, 0.694118, 1 )
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -49,6 +50,7 @@ __meta__ = {
 arrow_icons = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 script = ExtResource( 7 )
 [connection signal="button_up" from="." to="." method="_on_Button_button_up"]
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]

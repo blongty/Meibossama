@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Environment/Grid.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Levels/main.gd" type="Script" id=6]
 [ext_resource path="res://UI/Game Over/Game Over.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Game Over/Game Over.gd" type="Script" id=8]
+[ext_resource path="res://Music/survival.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1440, 810 )
@@ -78,6 +79,11 @@ anchor_right = 0.5
 margin_top = -349.0
 margin_bottom = -349.0
 script = ExtResource( 8 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+bus = "Music"
 [connection signal="done_moving" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_player_done_moving"]
 [connection signal="player_destroyed" from="Player" to="Player/Game Over" method="_on_Player_player_destroyed"]
 [connection signal="ready" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_Player_ready"]
