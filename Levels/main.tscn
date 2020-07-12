@@ -68,3 +68,13 @@ margin_top = -540.0
 margin_right = 960.0
 margin_bottom = 540.0
 player_reference = NodePath("../../..")
+
+[node name="Game Over" parent="Player" instance=ExtResource( 7 )]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = -349.0
+margin_bottom = -349.0
+script = ExtResource( 8 )
+[connection signal="player_destroyed" from="Player" to="Player/Game Over" method="_on_Player_player_destroyed"]
+[connection signal="ready" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_Player_ready"]

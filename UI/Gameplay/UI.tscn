@@ -47,3 +47,4 @@ __meta__ = {
 margin_top = 24.0
 margin_right = 504.0
 margin_bottom = 188.0
+[connection signal="pressed" from="MarginContainer2/Button" to="." method="_on_Button_pressed"]

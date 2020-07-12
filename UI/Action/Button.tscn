@@ -1,19 +1,60 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/Action/Button.gd" type="Script" id=1]
 [ext_resource path="res://Art/down arrow.png" type="Texture" id=2]
 [ext_resource path="res://Art/up arrow.png" type="Texture" id=3]
 [ext_resource path="res://Art/right arrow.png" type="Texture" id=4]
 [ext_resource path="res://Art/left arrow.png" type="Texture" id=5]
+[ext_resource path="res://SE/tmp/240721__amishaque__click.ogg" type="AudioStream" id=6]
+[ext_resource path="res://UI/Title/Audio.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.501961, 0.866667, 0.372549, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.501961, 0.866667, 0.372549, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0.960784, 0.54902, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="Button" type="Button"]
-margin_right = 256.0
-margin_bottom = 64.0
+light_mask = -2146435073
+margin_left = 10.5289
+margin_top = 15.5685
+margin_right = 266.529
+margin_bottom = 143.569
 rect_min_size = Vector2( 256, 128 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 expand_icon = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 arrow_icons = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
+
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+script = ExtResource( 7 )
+
+[connection signal="button_up" from="." to="." method="_on_Button_button_up"]
+
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="." to="AudioStreamPlayer" method="_on_Button_pressed"]

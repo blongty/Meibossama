@@ -20,6 +20,7 @@ signal player_destroyed
 signal done_moving
 
 func _ready():
+	print("sprite is getting ready...d")
 	root = get_tree().get_current_scene()
 	map = get_node(tilemap_reference)
 	sprite = get_node(sprite_ref)
@@ -99,3 +100,19 @@ func move_right():
 func _on_hitbox_area_entered(area):
 	emit_signal("player_destroyed")
 	sprite.set_visible(false)
+	
+func rotate_right_sprite():
+	sprite.rotation_degrees = 0
+	sprite.rotation_degrees = 90
+	
+func rotate_down_sprite():
+	sprite.rotation_degrees = 0
+	sprite.rotation_degrees = 180
+
+func rotate_left_sprite():
+	sprite.rotation_degrees = 0
+	sprite.rotation_degrees = 270
+
+func rotate_up_sprite():
+	sprite.rotation_degrees = 0
+
