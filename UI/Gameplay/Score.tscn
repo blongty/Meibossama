@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/Gameplay/Score.gd" type="Script" id=1]
 [ext_resource path="res://UI/Gameplay/QuirkyRobot.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/wave.tres" type="RichTextEffect" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -9,67 +10,67 @@ outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "fancy high update"
 length = 0.5
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("High score/Score:custom_colors/font_color:r")
+tracks/0/path = NodePath("High score/Score:rect_scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.87451, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("High score/Score:custom_colors/font_color:g")
+tracks/1/path = NodePath("High score/Score:rect_scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.505882, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("High score/Score:custom_colors/font_color:b")
+tracks/2/path = NodePath("High score/Score:custom_colors/default_color:r")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("High score/Score:custom_colors/font_color:a")
+tracks/3/path = NodePath("High score/Score:custom_colors/default_color:g")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0.984314, -0.25, 0, 0.25, 0, 0.505882, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/4/type = "bezier"
-tracks/4/path = NodePath("High score/Score:rect_scale:x")
+tracks/4/path = NodePath("High score/Score:custom_colors/default_color:b")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/5/type = "bezier"
-tracks/5/path = NodePath("High score/Score:rect_scale:y")
+tracks/5/path = NodePath("High score/Score:custom_colors/default_color:a")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/6/type = "bezier"
@@ -93,37 +94,37 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/8/type = "bezier"
-tracks/8/path = NodePath("Score/Score:custom_colors/font_color:r")
+tracks/8/path = NodePath("Score/Score:custom_colors/default_color:r")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"points": PoolRealArray( 0.968627, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/9/type = "bezier"
-tracks/9/path = NodePath("Score/Score:custom_colors/font_color:g")
+tracks/9/path = NodePath("Score/Score:custom_colors/default_color:g")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0.984314, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/10/type = "bezier"
-tracks/10/path = NodePath("Score/Score:custom_colors/font_color:b")
+tracks/10/path = NodePath("Score/Score:custom_colors/default_color:b")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"points": PoolRealArray( 0.0470588, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/11/type = "bezier"
-tracks/11/path = NodePath("Score/Score:custom_colors/font_color:a")
+tracks/11/path = NodePath("Score/Score:custom_colors/default_color:a")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -133,67 +134,66 @@ tracks/11/keys = {
 "times": PoolRealArray( 0, 0.5 )
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "fancy score update"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("Score/Score:rect_scale:x")
+tracks/0/path = NodePath("Score/Score:custom_colors/default_color:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("Score/Score:rect_scale:y")
+tracks/1/path = NodePath("Score/Score:custom_colors/default_color:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0.984314, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("Score/Score:custom_colors/font_color:r")
+tracks/2/path = NodePath("Score/Score:custom_colors/default_color:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0.921569, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("Score/Score:custom_colors/font_color:g")
+tracks/3/path = NodePath("Score/Score:custom_colors/default_color:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/4/type = "bezier"
-tracks/4/path = NodePath("Score/Score:custom_colors/font_color:b")
+tracks/4/path = NodePath("Score/Score:rect_scale:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 tracks/5/type = "bezier"
-tracks/5/path = NodePath("Score/Score:custom_colors/font_color:a")
+tracks/5/path = NodePath("Score/Score:rect_scale:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
 
@@ -205,82 +205,83 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 anim_ref = NodePath("AnimationPlayer")
+score_text_ref = NodePath("Score/Text")
 score_num_ref = NodePath("Score/Score")
+high_text_ref = NodePath("High score/Text")
 high_num_ref = NodePath("High score/Score")
 
 [node name="Score" type="HBoxContainer" parent="."]
 margin_right = 546.0
 margin_bottom = 80.0
 
-[node name="Text" type="Label" parent="Score"]
+[node name="Text" type="RichTextLabel" parent="Score"]
 margin_right = 350.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 350, 80 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
+bbcode_enabled = true
+bbcode_text = "[right]Score"
 text = "Score"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_active = false
 
-[node name="Score" type="Label" parent="Score"]
+[node name="Score" type="RichTextLabel" parent="Score"]
 margin_left = 354.0
 margin_right = 546.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 192, 80 )
 rect_pivot_offset = Vector2( 176, 20 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+rect_clip_content = false
+size_flags_stretch_ratio = 0.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 10
+custom_constants/shadow_offset_x = 0
+bbcode_enabled = true
+bbcode_text = "[right]0"
 text = "0"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_active = false
+custom_effects = [ ExtResource( 3 ) ]
 
 [node name="High score" type="HBoxContainer" parent="."]
 margin_top = 84.0
 margin_right = 546.0
 margin_bottom = 164.0
 
-[node name="Text" type="Label" parent="High score"]
+[node name="Text" type="RichTextLabel" parent="High score"]
 margin_right = 350.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 350, 80 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0.505882, 1, 1 )
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0.505882, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
+bbcode_enabled = true
+bbcode_text = "[right]High Score"
 text = "High Score"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_active = false
 
-[node name="Score" type="Label" parent="High score"]
+[node name="Score" type="RichTextLabel" parent="High score"]
 margin_left = 354.0
 margin_right = 546.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 192, 80 )
 rect_pivot_offset = Vector2( 176, 20 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0.505882, 1, 1 )
+rect_clip_content = false
+size_flags_stretch_ratio = 0.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0.505882, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 10
+custom_constants/shadow_offset_x = 0
+bbcode_enabled = true
+bbcode_text = "[right]0"
 text = "0"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/fancy high update" = SubResource( 3 )
-"anims/fancy score update" = SubResource( 2 )
+"anims/fancy high update" = SubResource( 2 )
+"anims/fancy score update" = SubResource( 3 )

@@ -18,6 +18,7 @@ func init():
 
 func _on_player_destroyed():
 	button.enable(false)
+	score_display.wave_score()
 
 func button_enable(b:bool):
 	button.enable(b)
@@ -36,3 +37,15 @@ func _on_player_done_moving(alive : bool):
 
 func _on_legal_action_button_pressed():
 	emit_signal("action_button_pressed")
+	
+func wave_high(s):
+	_score_display.wave_high(str(s))
+	
+func wave_score(s):
+	_score_display.wave_score(str(s))
+	
+func normal_score(s):
+	_score_display.normal_score(str(s))
+
+func normal_high(s):
+	_score_display.normal_high(str(s))

@@ -42,13 +42,13 @@ anchor_right = 1.0
 margin_left = -594.0
 margin_bottom = 200.0
 custom_constants/margin_right = 48
-custom_constants/margin_top = 24
+custom_constants/margin_top = 36
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Score Display" parent="MarginContainer" instance=ExtResource( 3 )]
-margin_top = 24.0
+margin_top = 36.0
 margin_right = 546.0
 margin_bottom = 200.0
 [connection signal="legal_action_button_pressed" from="MarginContainer2/Button" to="." method="_on_legal_action_button_pressed"]

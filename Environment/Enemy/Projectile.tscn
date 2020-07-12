@@ -43,7 +43,6 @@ anim_sprite_ref = NodePath("AnimatedSprite")
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "ufo"
-frame = 1
 playing = true
 
 [node name="Despawn" type="Area2D" parent="AnimatedSprite"]

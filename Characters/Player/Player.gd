@@ -44,8 +44,6 @@ func _ready():
 	init()
 
 func init(retry: bool = false):
-	print('retry %s' % retry)
-	print(particles)
 	pos = Vector2(0, 0)
 	alive = true
 	moving = false
@@ -64,7 +62,6 @@ func init(retry: bool = false):
 		death = death_scene.instance()
 		death.set_position(Vector2.ZERO)
 		add_child(death)
-		print(particles)
 
 	sprite.set_visible(true)
 

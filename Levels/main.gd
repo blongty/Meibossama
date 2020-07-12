@@ -58,7 +58,7 @@ func _process(delta):
 		_time = _time + delta
 		if get_score() != _prev_score:
 			emit_signal("score_changed", str(get_score()))
-			_prev_score == get_score()
+			_prev_score = get_score()
 		
 		if !beat_high and get_score() > _highscore:
 			beat_high = true
@@ -80,6 +80,8 @@ func restart_game():
 	player.init(true)
 	spawner.butcher()
 	UI.init()
+	UI.normal_score(0)
+	UI.normal_high(_highscore)
 	_time = 0
 	_prev_score = 0
 	_action_score = 0
@@ -94,6 +96,7 @@ func game_over():
 	# Checking
 	spawner.stop()
 	start_scoring(false)
+	UI.wave_score(get_score())
 	if get_score() > _highscore:
 		_highscore = get_score()
 		var highscore_file = File.new()
@@ -101,6 +104,7 @@ func game_over():
 		highscore_file.store_string(str(get_score()))
 		highscore_file.close()
 		UI.set_highscore(str(get_score()))
+		UI.wave_high(_highscore)
 		
 #		game_over_screen.show_and_update(str(get_score()), str(get_score()))
 #	else:
