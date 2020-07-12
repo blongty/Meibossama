@@ -19,8 +19,13 @@ func _ready():
 	player = main.get_node(main.player_reference)
 	button_se = get_node(button_se_ref)
 	
+	reroll()
+	
+func reroll(retry: bool = false):
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
+	if retry:
+		on_player_ready()
 	
 func _on_Button_pressed():
 	if disabled:

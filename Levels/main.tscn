@@ -20,7 +20,8 @@ UI_ref = NodePath("../Main/Player/Camera2D/CenterContainer/UI")
 game_over_screeen_ref = NodePath("Player/Game Over")
 aud_high_ref = NodePath("Beat High")
 spawner_ref = NodePath("Grid/EnemySpawner")
-fader_ref = NodePath("Player/Camera2D/CenterContainer/FadeTransition")
+fader_ref = NodePath("Player/FadeTransition")
+player_ref = NodePath("Player")
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -78,20 +79,20 @@ margin_right = 960.0
 margin_bottom = 540.0
 player_reference = NodePath("../../..")
 
-[node name="FadeTransition" parent="Player/Camera2D/CenterContainer" instance=ExtResource( 10 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -961.0
-margin_top = -540.0
-margin_right = 959.0
-margin_bottom = 540.0
-
 [node name="Game Over" parent="Player" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_top = -349.0
 margin_bottom = -349.0
+
+[node name="FadeTransition" parent="Player" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -961.0
+margin_top = -540.0
+margin_right = 959.0
+margin_bottom = 540.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
@@ -100,7 +101,10 @@ bus = "Music"
 
 [node name="Beat High" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+[connection signal="score_changed" from="." to="Player/Camera2D/CenterContainer/UI" method="update_ui_score"]
 [connection signal="done_moving" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_player_done_moving"]
 [connection signal="player_destroyed" from="Player" to="." method="_on_player_destroyed"]
 [connection signal="ready" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_Player_ready"]
 [connection signal="action_button_pressed" from="Player/Camera2D/CenterContainer/UI" to="." method="_on_UI_action_button_pressed"]
+[connection signal="main_menu_request" from="Player/Game Over" to="." method="_on_main_menu_request"]
+[connection signal="retry_request" from="Player/Game Over" to="." method="restart_game"]

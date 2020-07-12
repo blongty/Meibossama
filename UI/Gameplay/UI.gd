@@ -12,6 +12,9 @@ signal action_button_pressed
 func _ready():
 	button = get_node(button_reference)
 	_score_display = get_node(score_display)
+	
+func init():
+	button.reroll(true)
 
 func _on_player_destroyed():
 	button.enable(false)

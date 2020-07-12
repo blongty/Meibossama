@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/Game Over/Stilere.ttf.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://UI/Game Over/Retry.gd" type="Script" id=2]
 [ext_resource path="res://UI/Game Over/Game Over.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -146,7 +145,6 @@ custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 action_mode = 0
 text = "Retry"
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -159,5 +157,5 @@ rect_min_size = Vector2( 600, 200 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
 text = "Main Menu"
-[connection signal="pressed" from="VBoxContainer/Retry" to="VBoxContainer/Retry" method="_on_Retry_pressed"]
-[connection signal="pressed" from="VBoxContainer/Main menu" to="VBoxContainer/Retry" method="_on_Main_menu_pressed"]
+[connection signal="button_up" from="VBoxContainer/Retry" to="." method="_on_Retry_button_up"]
+[connection signal="button_up" from="VBoxContainer/Main menu" to="." method="_on_Main_menu_button_up"]

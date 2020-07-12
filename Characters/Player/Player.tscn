@@ -13,8 +13,10 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+particles_ref = NodePath("Sprite/Particles2D")
 sprite_ref = NodePath("Sprite")
 tween_ref = NodePath("Tween")
+particles_scene = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

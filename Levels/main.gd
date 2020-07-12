@@ -15,8 +15,13 @@ var spawner
 export(NodePath) var fader_ref
 onready var fader = get_node(fader_ref)
 
+export(NodePath) var player_ref
+onready var player = get_node(player_ref)
+
 export(int) var action_score_bonus = 2
 export(int) var iterative_action_bonus = 1
+
+onready var _action_score_bonus = action_score_bonus
 
 var _prev_score = 0
 var _action_score = 0
@@ -44,10 +49,8 @@ func _ready():
 	
 	UI.set_highscore(str(_highscore))
 	
-	print('starting fade')
 	fader.fade_in()
 	yield(fader, 'anim_done')
-	print('end fade')
 	start_game()
 
 func _process(delta):
@@ -70,8 +73,18 @@ func get_score():
 func start_game():
 	start_scoring(true)
 	UI.button_enable(true)
-	connect('score_changed', UI, 'update_ui_score')
 	spawner.start()
+	
+func restart_game():
+	player.init(true)
+	spawner.butcher()
+	UI.init()
+	_time = 0
+	_prev_score = 0
+	_action_score = 0
+	_action_score_bonus = action_score_bonus
+	emit_signal("score_changed", str(get_score()))
+	start_game()
 
 func _on_player_destroyed():
 	game_over()
@@ -80,6 +93,7 @@ func game_over():
 	# Checking
 	start_scoring(false)
 	if get_score() > _highscore:
+		_highscore = get_score()
 		var highscore_file = File.new()
 		highscore_file.open("res://highscore.txt", File.WRITE)
 		highscore_file.store_string(str(get_score()))
@@ -93,6 +107,12 @@ func game_over():
 	UI.button_enable(false)
 	
 func _on_UI_action_button_pressed():
-	_action_score += action_score_bonus
-	action_score_bonus += iterative_action_bonus
+	_action_score += _action_score_bonus
+	_action_score_bonus += iterative_action_bonus
 	emit_signal("score_changed", str(get_score()), true)
+
+
+func _on_main_menu_request():
+	fader.fade_out()
+	yield(fader, "anim_done")
+	get_tree().change_scene("res://UI/Title/title.tscn")

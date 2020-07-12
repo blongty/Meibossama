@@ -1,9 +1,13 @@
 extends KinematicBody2D
 
+export(NodePath) var particles_ref
 export(NodePath) var tilemap_reference
 export(bool) var debug_movement
 export(NodePath) var sprite_ref
 export(NodePath) var tween_ref
+export(PackedScene) var particles_scene
+
+var particles
 
 var location = Vector2()
 var speed = 128
@@ -25,16 +29,25 @@ func _ready():
 	map = get_node(tilemap_reference)
 	sprite = get_node(sprite_ref)
 	tween = get_node(tween_ref)
+	particles = get_node(particles_ref)
 	
-	if map != null:
-		location = map.map_to_world(Vector2(0,0)) + Vector2(64, 64)
-		set_global_position(location)
-	else:
-		location == get_position()
-		print("Warning: If player is in actual game, make sure Tilemap Reference is assigned, otherwise grid generation will not function.")
+	init()
+
+func init(retry: bool = false):
+	pos = Vector2(0, 0)
+	alive = true
+	moving = false
+	location = map.map_to_world(Vector2(0,0)) + Vector2(64, 64)
+	set_global_position(location)
+	if retry:
+		sprite.remove_child(particles)
+		particles.queue_free()
+		
+		particles = particles_scene.instance()
+		particles.set_position(Vector2(0, 0))
+		sprite.add_child(particles)
 	
-	if sprite == null:
-		print("Warning: Sprite reference on player not assigned. Will cause unexpected behavior when destroyed in main scene.")
+	sprite.set_visible(true)
 
 func _physics_process(delta):
 	if debug_movement:
@@ -102,17 +115,17 @@ func _on_hitbox_area_entered(area):
 	sprite.set_visible(false)
 	
 func rotate_right_sprite():
-	sprite.rotation_degrees = 0
-	sprite.rotation_degrees = 90
+	sprite.set_rotation_degrees(0)
+	sprite.set_rotation_degrees(90)
 	
 func rotate_down_sprite():
-	sprite.rotation_degrees = 0
-	sprite.rotation_degrees = 180
+	sprite.set_rotation_degrees(0)
+	sprite.set_rotation_degrees(180)
 
 func rotate_left_sprite():
-	sprite.rotation_degrees = 0
-	sprite.rotation_degrees = 270
+	sprite.set_rotation_degrees(0)
+	sprite.set_rotation_degrees(270)
 
 func rotate_up_sprite():
-	sprite.rotation_degrees = 0
+	sprite.set_rotation_degrees(0)
 

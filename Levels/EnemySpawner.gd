@@ -1,8 +1,5 @@
 extends Node2D
 
-export(NodePath) var timer_ref
-var timer
-
 export(NodePath) var Player_Path
 export(NodePath) var tilemap_reference
 
@@ -13,11 +10,17 @@ var playerLoc
 
 func _ready():
 	randomize()
-	timer = get_node(timer_ref)
 
 func start():
-	timer.start()
-
+	randomize()
+	$respawnTimer.wait_time = 1
+	$respawnTimer.start()
+	
+func butcher():
+	for node in get_children():
+		if !(node is Timer):
+			remove_child(node)
+			node.queue_free()
 
 func _on_respawnTimer_timeout():
 	var location = Vector2()

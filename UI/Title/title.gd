@@ -18,6 +18,8 @@ func _ready():
 	
 	# Set high score
 	highscore.set_text('High Score: %s' % high_num)
+	
+	trans.fade_in()
 
 func _on_Quit_pressed():
 	 get_tree().quit()
