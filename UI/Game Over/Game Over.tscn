@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Game Over/Stilere.ttf.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Game Over/Retry.gd" type="Script" id=2]
+[ext_resource path="res://UI/Game Over/Game Over.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -17,9 +18,12 @@ font_data = ExtResource( 1 )
 [node name="Game Over" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+score_ref = NodePath("VBoxContainer/Score/HBoxContainer/Number")
+high_score_ref = NodePath("VBoxContainer/High Score/HBoxContainer2/Number")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -27,7 +31,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -299.832
 margin_top = 8.98984
-margin_right = 300.168
+margin_right = 328.168
 margin_bottom = 8.98987
 custom_constants/separation = 24
 alignment = 1
@@ -36,9 +40,9 @@ __meta__ = {
 }
 
 [node name="Gome Over" type="Label" parent="VBoxContainer"]
-margin_top = 237.0
-margin_right = 600.0
-margin_bottom = 304.0
+margin_top = 191.0
+margin_right = 628.0
+margin_bottom = 258.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -50,24 +54,92 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Your Score" type="Label" parent="VBoxContainer"]
+[node name="Score" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 282.0
+margin_right = 628.0
+margin_bottom = 349.0
+custom_constants/margin_right = 64
+custom_constants/margin_left = 64
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Score"]
+margin_left = 64.0
+margin_right = 564.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 500, 0 )
+alignment = 1
+
+[node name="Text" type="Label" parent="VBoxContainer/Score/HBoxContainer"]
 modulate = Color( 0.94902, 1, 0.105882, 1 )
-margin_top = 328.0
-margin_right = 600.0
-margin_bottom = 395.0
+margin_right = 329.0
+margin_bottom = 67.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
 custom_constants/shadow_offset_y = 10
-text = " Your Score:"
-align = 1
+text = "Your Score"
+
+[node name="Number" type="Label" parent="VBoxContainer/Score/HBoxContainer"]
+modulate = Color( 0.94902, 1, 0.105882, 1 )
+margin_left = 333.0
+margin_right = 500.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 10
+custom_constants/shadow_offset_y = 10
+text = "0"
+align = 2
+
+[node name="High Score" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 373.0
+margin_right = 628.0
+margin_bottom = 440.0
+custom_constants/margin_right = 64
+custom_constants/margin_left = 64
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/High Score"]
+margin_left = 64.0
+margin_right = 564.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 500, 0 )
+alignment = 1
+
+[node name="Text" type="Label" parent="VBoxContainer/High Score/HBoxContainer2"]
+modulate = Color( 0.94902, 1, 0.105882, 1 )
+margin_right = 303.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 10
+custom_constants/shadow_offset_y = 10
+text = "High Score"
+
+[node name="Number" type="Label" parent="VBoxContainer/High Score/HBoxContainer2"]
+modulate = Color( 0.94902, 1, 0.105882, 1 )
+margin_left = 307.0
+margin_right = 500.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 10
+custom_constants/shadow_offset_y = 10
+text = "0"
+align = 2
 
 [node name="Retry" type="Button" parent="VBoxContainer"]
 self_modulate = Color( 0.945098, 0.945098, 0.945098, 1 )
-margin_top = 419.0
-margin_right = 600.0
-margin_bottom = 619.0
+margin_top = 464.0
+margin_right = 628.0
+margin_bottom = 664.0
 rect_min_size = Vector2( 600, 200 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )
@@ -80,9 +152,9 @@ __meta__ = {
 }
 
 [node name="Main menu" type="Button" parent="VBoxContainer"]
-margin_top = 643.0
-margin_right = 600.0
-margin_bottom = 843.0
+margin_top = 688.0
+margin_right = 628.0
+margin_bottom = 888.0
 rect_min_size = Vector2( 600, 200 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.94902, 1, 0.105882, 1 )

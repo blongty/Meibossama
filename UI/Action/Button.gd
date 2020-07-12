@@ -2,24 +2,28 @@ extends Button
 
 var player
 export(NodePath) var main_ref
-var enabled = false
 var main
 var choice
+export(NodePath) var button_se_ref
+var button_se
+
 export(Array, Texture) var arrow_icons
 
 enum {UP, RIGHT, DOWN, LEFT}
 
+signal legal_action_button_pressed
+
 func _ready():
 	grab_focus()
-	enabled = false
 	main = get_node(main_ref)
 	player = main.get_node(main.player_reference)
+	button_se = get_node(button_se_ref)
 	
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
 	
 func _on_Button_pressed():
-	if !enabled:
+	if disabled:
 		return
 
 	# If 1, print something
@@ -42,11 +46,14 @@ func _on_Button_pressed():
 	elif choice == LEFT:
 		player.move_left()
 		print('moved left')
+
+	button_se.play()
+	emit_signal('legal_action_button_pressed')
 	
-	enabled = false
+	disabled = true
 
 func enable(b: bool):
-	enabled = b
+	disabled = !b
 	
 func on_player_ready():
 	if choice == 1:
@@ -58,13 +65,9 @@ func on_player_ready():
 	elif choice == 3:
 		player.rotate_left_sprite()
 
-
-func _on_Button_button_up():
-	pass
-	
 func _on_player_done_moving():
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
 	on_player_ready()
 
-	enabled = true
+	disabled = false

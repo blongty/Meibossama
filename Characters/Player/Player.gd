@@ -20,7 +20,6 @@ signal player_destroyed
 signal done_moving
 
 func _ready():
-	print("sprite is getting ready...d")
 	root = get_tree().get_current_scene()
 	map = get_node(tilemap_reference)
 	sprite = get_node(sprite_ref)

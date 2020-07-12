@@ -7,7 +7,7 @@
 [ext_resource path="res://Levels/EnemySpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Levels/main.gd" type="Script" id=6]
 [ext_resource path="res://UI/Game Over/Game Over.tscn" type="PackedScene" id=7]
-[ext_resource path="res://UI/Game Over/Game Over.gd" type="Script" id=8]
+[ext_resource path="res://SE/high score.wav" type="AudioStream" id=8]
 [ext_resource path="res://Music/survival.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -16,6 +16,8 @@ extents = Vector2( 1440, 810 )
 [node name="Main" type="Node2D"]
 script = ExtResource( 6 )
 UI_ref = NodePath("../Main/Player/Camera2D/CenterContainer/UI")
+game_over_screeen_ref = NodePath("Player/Game Over")
+aud_high_ref = NodePath("Beat High")
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -79,12 +81,15 @@ anchor_left = 0.5
 anchor_right = 0.5
 margin_top = -349.0
 margin_bottom = -349.0
-script = ExtResource( 8 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 autoplay = true
 bus = "Music"
+
+[node name="Beat High" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 [connection signal="done_moving" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_player_done_moving"]
-[connection signal="player_destroyed" from="Player" to="Player/Game Over" method="_on_Player_player_destroyed"]
+[connection signal="player_destroyed" from="Player" to="." method="_on_player_destroyed"]
 [connection signal="ready" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_Player_ready"]
+[connection signal="action_button_pressed" from="Player/Camera2D/CenterContainer/UI" to="." method="_on_UI_action_button_pressed"]
