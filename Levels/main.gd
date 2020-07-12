@@ -76,6 +76,7 @@ func start_game():
 	spawner.start()
 	
 func restart_game():
+	beat_high = false
 	player.init(true)
 	spawner.butcher()
 	UI.init()
