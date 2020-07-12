@@ -23,3 +23,9 @@ func update_ui_score(s:String):
 
 func set_highscore(s:String):
 	_score_display.set_high(s)
+
+func _on_Player_ready():
+	button.on_player_ready()
+
+func _on_player_done_moving():
+	button._on_player_done_moving()

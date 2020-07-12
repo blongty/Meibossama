@@ -10,24 +10,23 @@ export(Array, Texture) var arrow_icons
 enum {UP, RIGHT, DOWN, LEFT}
 
 func _ready():
+	grab_focus()
 	enabled = false
 	main = get_node(main_ref)
 	player = main.get_node(main.player_reference)
 	
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
-
+	
+	
 func _on_Button_pressed():
 	if !enabled:
 		return
-		
-	
-	
-	# Generate a integer between 1 and 4 inclusively
 	
 	# If 1, print something
 	if choice == UP:
 		player.move_up()
+		#player.rotation_degrees()
 		print('moved up')
 	
 	# Else if 2, print something else
@@ -44,10 +43,30 @@ func _on_Button_pressed():
 	elif choice == LEFT:
 		player.move_left()
 		print('moved left')
-		
-	choice = randi()%4
-	set_button_icon(arrow_icons[choice])
-	
-		
+
+	enabled = false
+
 func enable(b: bool):
 	enabled = b
+	
+func on_player_ready():
+	if choice == 1:
+		player.rotate_right_sprite()
+	elif choice == 0:
+		player.rotate_up_sprite()
+	elif choice == 2:
+		player.rotate_down_sprite()
+	elif choice == 3:
+		player.rotate_left_sprite()
+
+
+#func _on_Button_button_up():
+#	on_player_ready()
+
+	
+func _on_player_done_moving():
+	choice = randi()%4
+	set_button_icon(arrow_icons[choice])
+	on_player_ready()
+	
+	enabled = true
