@@ -4,18 +4,20 @@ export(NodePath) var tilemap_reference
 export(bool) var debug_movement
 export(NodePath) var sprite_ref
 export(NodePath) var tween_ref
+export(NodePath) var death_ref
 
 var location = Vector2()
 var speed = 128
 var pos = Vector2(0,0)
 var tween
+var death
 export(float) var move_speed = 0.5
 
 var map
 var sprite
 var root
 var moving = false
-var alive = true
+var alive
 
 signal player_destroyed
 signal done_moving
@@ -25,7 +27,8 @@ func _ready():
 	map = get_node(tilemap_reference)
 	sprite = get_node(sprite_ref)
 	tween = get_node(tween_ref)
-	
+	death = get_node(death_ref)
+	alive = true
 	if map != null:
 		location = map.map_to_world(Vector2(0,0)) + Vector2(64, 64)
 		set_global_position(location)
@@ -96,10 +99,12 @@ func move_right():
 		emit_signal("done_moving", alive)
 
 func _on_hitbox_area_entered(area):
-	emit_signal("player_destroyed")
-	alive = false
-	get_node("SEDeath").play()
-	sprite.set_visible(false)
+	if alive == true:
+		emit_signal("player_destroyed")
+		get_node("SEDeath").play()
+		sprite.set_visible(false)
+		death.dead()
+		alive = false
 	
 func rotate_right_sprite():
 	sprite.rotation_degrees = 0
