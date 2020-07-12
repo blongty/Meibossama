@@ -72,6 +72,66 @@ tracks/5/keys = {
 "points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Score/Score:rect_scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Score/Score:rect_scale:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Score/Score:custom_colors/font_color:r")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 0.968627, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("Score/Score:custom_colors/font_color:g")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("Score/Score:custom_colors/font_color:b")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 0.0470588, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("Score/Score:custom_colors/font_color:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "fancy score update"
@@ -149,7 +209,7 @@ score_num_ref = NodePath("Score/Score")
 high_num_ref = NodePath("High score/Score")
 
 [node name="Score" type="HBoxContainer" parent="."]
-margin_right = 504.0
+margin_right = 546.0
 margin_bottom = 80.0
 
 [node name="Text" type="Label" parent="Score"]
@@ -169,17 +229,16 @@ __meta__ = {
 
 [node name="Score" type="Label" parent="Score"]
 margin_left = 354.0
-margin_right = 504.0
+margin_right = 546.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 150, 80 )
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 75, 20 )
+rect_min_size = Vector2( 192, 80 )
+rect_pivot_offset = Vector2( 176, 20 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.921569, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
 text = "0"
-align = 1
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -187,7 +246,7 @@ __meta__ = {
 
 [node name="High score" type="HBoxContainer" parent="."]
 margin_top = 84.0
-margin_right = 504.0
+margin_right = 546.0
 margin_bottom = 164.0
 
 [node name="Text" type="Label" parent="High score"]
@@ -207,17 +266,16 @@ __meta__ = {
 
 [node name="Score" type="Label" parent="High score"]
 margin_left = 354.0
-margin_right = 504.0
+margin_right = 546.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 150, 80 )
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 75, 20 )
+rect_min_size = Vector2( 192, 80 )
+rect_pivot_offset = Vector2( 176, 20 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.87451, 1, 0, 1 )
+custom_colors/font_color = Color( 0, 0.505882, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
 text = "0"
-align = 1
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

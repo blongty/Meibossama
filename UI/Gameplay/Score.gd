@@ -15,14 +15,14 @@ func _ready():
 	anim = get_node(anim_ref)
 	
 func set_score(score : String, fancy: bool = false):
-	if fancy:
-		anim.play('fancy score update')
+	if int(score) < int(high_num.get_text()):
+		if fancy:
+			anim.play('fancy score update')
+	else:
+		if fancy:
+			anim.play('fancy high update')
+		high_num.set_text(score)
 	
-#	if int(score) > int(high_num.get_text()):
-#		if fancy:
-#			anim.play('fancy high update')
-#		high_num.set_text(score)
-#
 	score_num.set_text(score)
 
 func set_high(i : String):

@@ -15,6 +15,7 @@ var map
 var sprite
 var root
 var moving = false
+var alive = true
 
 signal player_destroyed
 signal done_moving
@@ -34,8 +35,6 @@ func _ready():
 	
 	if sprite == null:
 		print("Warning: Sprite reference on player not assigned. Will cause unexpected behavior when destroyed in main scene.")
-	
-	connect("player_destroyed", root, "_on_player_destroyed")
 
 func _physics_process(delta):
 	if debug_movement:
@@ -58,7 +57,7 @@ func move_up():
 		tween.start()
 		yield(tween, 'tween_completed')
 		moving = false
-		emit_signal("done_moving")
+		emit_signal("done_moving", alive)
 
 func move_down():
 	if !moving:
@@ -70,7 +69,7 @@ func move_down():
 		tween.start()
 		yield(tween, 'tween_completed')
 		moving = false
-		emit_signal("done_moving")
+		emit_signal("done_moving", alive)
 	
 func move_left():
 	if !moving:
@@ -82,7 +81,7 @@ func move_left():
 		tween.start()
 		yield(tween, 'tween_completed')
 		moving = false
-		emit_signal("done_moving")
+		emit_signal("done_moving", alive)
 
 func move_right():
 	if !moving:
@@ -94,10 +93,11 @@ func move_right():
 		tween.start()
 		yield(tween, 'tween_completed')
 		moving = false
-		emit_signal("done_moving")
+		emit_signal("done_moving", alive)
 
 func _on_hitbox_area_entered(area):
 	emit_signal("player_destroyed")
+	alive = false
 	get_node("SEDeath").play()
 	sprite.set_visible(false)
 	

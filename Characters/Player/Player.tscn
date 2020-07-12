@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/player_final.png" type="Texture" id=2]
 [ext_resource path="res://SE/death.wav" type="AudioStream" id=3]
+[ext_resource path="res://Characters/Player/Emitter.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 1 )
@@ -19,6 +20,9 @@ tween_ref = NodePath("Tween")
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 128, 128 )
+
+[node name="Particles2D" parent="Sprite" instance=ExtResource( 4 )]
+position = Vector2( 0, 0 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 2

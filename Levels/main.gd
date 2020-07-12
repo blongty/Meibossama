@@ -1,28 +1,40 @@
 extends Node2D
 
 export(NodePath) var UI_ref
-export(int) var action_score_bonus = 2
+var UI
+
 export(NodePath) var game_over_screeen_ref
 var game_over_screen
 
 export(NodePath) var aud_high_ref
 var aud_high
 
+export(NodePath) var spawner_ref
+var spawner
+
+export(NodePath) var fader_ref
+onready var fader = get_node(fader_ref)
+
+export(int) var action_score_bonus = 2
+export(int) var iterative_action_bonus = 1
+
 var _prev_score = 0
 var _action_score = 0
 var _highscore = 0
 var _time = 0
 var _ongoing = false
-var UI
+
 var beat_high = false
 
 signal score_changed
 
 
 func _ready():
+	fader.set_dark()
 	UI = get_node(UI_ref)
 	game_over_screen = get_node(game_over_screeen_ref)
 	aud_high = get_node(aud_high_ref)
+	spawner = get_node(spawner_ref)
 	
 	# Reading for existing high score
 	var highscore_file = File.new()
@@ -32,6 +44,10 @@ func _ready():
 	
 	UI.set_highscore(str(_highscore))
 	
+	print('starting fade')
+	fader.fade_in()
+	yield(fader, 'anim_done')
+	print('end fade')
 	start_game()
 
 func _process(delta):
@@ -55,6 +71,7 @@ func start_game():
 	start_scoring(true)
 	UI.button_enable(true)
 	connect('score_changed', UI, 'update_ui_score')
+	spawner.start()
 
 func _on_player_destroyed():
 	game_over()
@@ -77,4 +94,5 @@ func game_over():
 	
 func _on_UI_action_button_pressed():
 	_action_score += action_score_bonus
+	action_score_bonus += iterative_action_bonus
 	emit_signal("score_changed", str(get_score()), true)

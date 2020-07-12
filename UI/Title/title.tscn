@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/Title/f2-tecnocratica-ffp.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Title/Button.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UI/Stars Particles.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Game Over/HighlandGothicFLF-Bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Music/main_theme.wav" type="AudioStream" id=7]
+[ext_resource path="res://UI/fade.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -28,6 +29,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 highscore_ref = NodePath("Panel/HBoxContainer/VBoxContainer/High Score")
+trans_ref = NodePath("FadeTransition")
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -118,5 +120,7 @@ text = "Quit"
 stream = ExtResource( 7 )
 autoplay = true
 bus = "Music"
+
+[node name="FadeTransition" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

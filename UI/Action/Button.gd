@@ -65,9 +65,10 @@ func on_player_ready():
 	elif choice == 3:
 		player.rotate_left_sprite()
 
-func _on_player_done_moving():
-	choice = randi()%4
-	set_button_icon(arrow_icons[choice])
-	on_player_ready()
-
-	disabled = false
+func _on_player_done_moving(alive: bool):
+	if alive:
+		choice = randi()%4
+		set_button_icon(arrow_icons[choice])
+		on_player_ready()
+	
+		disabled = false

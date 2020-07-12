@@ -3,8 +3,12 @@ extends Control
 export(NodePath) var highscore_ref
 var highscore
 
+export(NodePath) var trans_ref
+var trans
+
 func _ready():
 	highscore = get_node(highscore_ref)
+	trans = get_node(trans_ref)
 	
 	# Get latest high score
 	var file = File.new()
@@ -18,7 +22,8 @@ func _ready():
 func _on_Quit_pressed():
 	 get_tree().quit()
 
-
 func _on_Start_pressed():
+	trans.fade_out()
+	yield(trans, 'anim_done')
 	get_tree().change_scene("res://Levels/main.tscn")
 

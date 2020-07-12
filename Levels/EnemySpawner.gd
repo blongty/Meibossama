@@ -1,4 +1,8 @@
 extends Node2D
+
+export(NodePath) var timer_ref
+var timer
+
 export(NodePath) var Player_Path
 export(NodePath) var tilemap_reference
 
@@ -9,7 +13,11 @@ var playerLoc
 
 func _ready():
 	randomize()
-	
+	timer = get_node(timer_ref)
+
+func start():
+	timer.start()
+
 
 func _on_respawnTimer_timeout():
 	var location = Vector2()
