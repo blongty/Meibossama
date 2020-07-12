@@ -8,6 +8,7 @@ func _ready():
 	
 	# Get latest high score
 	var file = File.new()
+	file.open("res://highscore.txt", File.READ)
 	var high_num = file.get_as_text()
 	file.close()
 	
