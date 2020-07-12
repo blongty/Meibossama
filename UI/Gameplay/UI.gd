@@ -27,3 +27,6 @@ func set_highscore(s:String):
 
 func _on_Player_ready():
 	button.on_player_ready()
+
+func _on_player_done_moving():
+	button._on_player_done_moving()

@@ -17,17 +17,12 @@ func _ready():
 	
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
-	
 
 	
 func _on_Button_pressed():
 	if !enabled:
 		return
-		
-	
-	
-	# Generate a integer between 1 and 4 inclusively
-	
+
 	# If 1, print something
 	if choice == UP:
 		player.move_up()
@@ -48,9 +43,8 @@ func _on_Button_pressed():
 	elif choice == LEFT:
 		player.move_left()
 		print('moved left')
-		
-	choice = randi()%4
-	set_button_icon(arrow_icons[choice])
+	
+	enabled = false
 	
 		
 func enable(b: bool):
@@ -68,4 +62,11 @@ func on_player_ready():
 
 
 func _on_Button_button_up():
+#	on_player_ready()
+	pass
+	
+func _on_player_done_moving():
+	choice = randi()%4
+	set_button_icon(arrow_icons[choice])
 	on_player_ready()
+	enabled = true
