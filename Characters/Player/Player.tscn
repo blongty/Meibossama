@@ -12,6 +12,7 @@ __meta__ = {
 "_edit_group_": true
 }
 sprite_ref = NodePath("Sprite")
+tween_ref = NodePath("Tween")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -23,4 +24,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

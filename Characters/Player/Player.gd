@@ -3,21 +3,27 @@ extends KinematicBody2D
 export(NodePath) var tilemap_reference
 export(bool) var debug_movement
 export(NodePath) var sprite_ref
+export(NodePath) var tween_ref
 
 var location = Vector2()
 var speed = 128
 var pos = Vector2(0,0)
+var tween
+export(float) var move_speed = 0.5
 
 var map
 var sprite
 var root
+var moving = false
 
 signal player_destroyed
+signal done_moving
 
 func _ready():
 	root = get_tree().get_current_scene()
 	map = get_node(tilemap_reference)
 	sprite = get_node(sprite_ref)
+	tween = get_node(tween_ref)
 	
 	if map != null:
 		location = map.map_to_world(Vector2(0,0)) + Vector2(64, 64)
@@ -43,28 +49,52 @@ func _physics_process(delta):
 			move_left()
 
 func move_up():
-	location.y = location.y-speed
-	pos += Vector2(0,-1)
-	map.generate_tiles(pos, 0)
-	set_position(location)
+	if !moving:
+		location.y = location.y-speed
+		pos += Vector2(0,-1)
+		map.generate_tiles(pos, 0)
+		moving = true
+		tween.interpolate_property(self, 'position', get_position(), location, move_speed, Tween.TRANS_QUAD)
+		tween.start()
+		yield(tween, 'tween_completed')
+		moving = false
+		emit_signal("done_moving")
 
 func move_down():
-	location.y = location.y+speed
-	pos += Vector2(0,1)
-	map.generate_tiles(pos, 2)
-	set_position(location)
+	if !moving:
+		location.y = location.y+speed
+		pos += Vector2(0,1)
+		map.generate_tiles(pos, 2)
+		moving = true
+		tween.interpolate_property(self, 'position', get_position(), location, move_speed, Tween.TRANS_QUAD)
+		tween.start()
+		yield(tween, 'tween_completed')
+		moving = false
+		emit_signal("done_moving")
 	
 func move_left():
-	location.x = location.x-speed
-	pos += Vector2(-1,0)
-	map.generate_tiles(pos, 3)
-	set_position(location)
+	if !moving:
+		location.x = location.x-speed
+		pos += Vector2(-1,0)
+		map.generate_tiles(pos, 3)
+		moving = true
+		tween.interpolate_property(self, 'position', get_position(), location, move_speed, Tween.TRANS_QUAD)
+		tween.start()
+		yield(tween, 'tween_completed')
+		moving = false
+		emit_signal("done_moving")
 
 func move_right():
-	location.x = location.x+speed
-	pos += Vector2(1,0)
-	map.generate_tiles(pos, 1)
-	set_position(location)
+	if !moving:
+		location.x = location.x+speed
+		pos += Vector2(1,0)
+		map.generate_tiles(pos, 1)
+		moving = true
+		tween.interpolate_property(self, 'position', get_position(), location, move_speed, Tween.TRANS_QUAD)
+		tween.start()
+		yield(tween, 'tween_completed')
+		moving = false
+		emit_signal("done_moving")
 
 func _on_hitbox_area_entered(area):
 	emit_signal("player_destroyed")
