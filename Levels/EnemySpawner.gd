@@ -1,8 +1,11 @@
 extends Node2D
 export(NodePath) var Player_Path
+export(NodePath) var tilemap_reference
 
 var enemy = preload("res://Environment/Enemy/Projectile.tscn")
 onready var player = get_node(Player_Path)
+var map
+var playerLoc
 
 func _ready():
 	randomize()
@@ -11,7 +14,8 @@ func _ready():
 func _on_respawnTimer_timeout():
 	var location = Vector2()
 	var rng = randi()%4 +1
-	var playerLoc = player.position
+	map = get_node(tilemap_reference)
+	playerLoc = map.map_to_world(player.pos)
 	
 	
 	var e = enemy.instance()
@@ -35,7 +39,7 @@ func _on_respawnTimer_timeout():
 		e.position = location
 		e.move_left()
 	
-	e.speed = randi()%600 + 100
+	e.speed = randi()%325 + 75
 	
 	$respawnTimer.wait_time = max(.01, $respawnTimer.wait_time - .001)
 	
@@ -106,6 +110,7 @@ func randomTopSpawn(playerLoc):
 		location.x = playerLoc.x-896
 		location.y = playerLoc.y-896
 	
+	location.x+=64
 	return(location)
 	
 func randomBottomSpawn(playerLoc):
@@ -173,6 +178,7 @@ func randomBottomSpawn(playerLoc):
 		location.x = playerLoc.x-896
 		location.y = playerLoc.y+896
 	
+	location.x+=64
 	return(location)
 	
 func randomLeftSpawn(playerLoc):
@@ -234,7 +240,8 @@ func randomLeftSpawn(playerLoc):
 	elif rngCell == 26:
 		location.y = playerLoc.y-896
 		location.x = playerLoc.x-1216
-
+	
+	location.y+=64
 	return(location)
 	
 func randomRightSpawn(playerLoc):
@@ -296,5 +303,7 @@ func randomRightSpawn(playerLoc):
 	elif rngCell == 26:
 		location.y = playerLoc.y-896
 		location.x = playerLoc.x+1216
+	
+	location.y+=64
 
 	return(location)

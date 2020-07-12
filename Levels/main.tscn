@@ -22,6 +22,7 @@ self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="EnemySpawner" parent="Grid" instance=ExtResource( 5 )]
 Player_Path = NodePath("../../Player")
+tilemap_reference = NodePath("..")
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 64, -64 )
