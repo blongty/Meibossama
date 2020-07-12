@@ -16,6 +16,9 @@ func start():
 	$respawnTimer.wait_time = 1
 	$respawnTimer.start()
 	
+func stop():
+	$respawnTimer.stop()
+	
 func butcher():
 	for node in get_children():
 		if !(node is Timer):

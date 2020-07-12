@@ -2,14 +2,20 @@ extends KinematicBody2D
 var speed = 200
 var direction = Vector2(0,0)
 
-export(Array, Texture) var enemy_sprites
+export(NodePath) var anim_sprite_ref
+onready var anim_sprite = get_node(anim_sprite_ref)
 
 # This should have been a RigidBody2D, but for the sake of quickness,
 # we have mistakenly writen as a Kinematic, could cause performance
 # issues later on.
 
 func _ready():
-	get_node("Sprite").set_texture(enemy_sprites[randi()%enemy_sprites.size()])
+	var frames = anim_sprite.get_sprite_frames()
+	var anim_name = frames.get_animation_names()[randi() % frames.get_animation_names().size()]
+	
+	anim_sprite.play(anim_name)
+		
+#	get_node("Sprite").set_texture(enemy_sprites[randi()%enemy_sprites.size()])
 	
 func _physics_process(delta):
 	move_and_slide(direction * speed)

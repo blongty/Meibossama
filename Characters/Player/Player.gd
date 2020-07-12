@@ -4,21 +4,28 @@ export(NodePath) var particles_ref
 export(NodePath) var tilemap_reference
 export(bool) var debug_movement
 export(NodePath) var sprite_ref
-export(NodePath) var tween_ref
-export(PackedScene) var particles_scene
+var sprite
 
-var particles
+export(NodePath) var tween_ref
+var tween
+
+export(PackedScene) var particles_scene
+var particles : Particles2D
+
+
+export(PackedScene) var death_scene
 export(NodePath) var death_ref
+var death
 
 var location = Vector2()
 var speed = 128
 var pos = Vector2(0,0)
-var tween
-var death
+
+
 export(float) var move_speed = 0.5
 
 var map
-var sprite
+
 var root
 var moving = false
 var alive
@@ -37,6 +44,8 @@ func _ready():
 	init()
 
 func init(retry: bool = false):
+	print('retry %s' % retry)
+	print(particles)
 	pos = Vector2(0, 0)
 	alive = true
 	moving = false
@@ -45,10 +54,17 @@ func init(retry: bool = false):
 	if retry:
 		sprite.remove_child(particles)
 		particles.queue_free()
+		remove_child(death)
+		death.queue_free()
 		
 		particles = particles_scene.instance()
 		particles.set_position(Vector2(0, 0))
 		sprite.add_child(particles)
+		
+		death = death_scene.instance()
+		death.set_position(Vector2.ZERO)
+		add_child(death)
+		print(particles)
 
 	sprite.set_visible(true)
 

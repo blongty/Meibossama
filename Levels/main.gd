@@ -92,6 +92,7 @@ func _on_player_destroyed():
 
 func game_over():
 	# Checking
+	spawner.stop()
 	start_scoring(false)
 	if get_score() > _highscore:
 		_highscore = get_score()

@@ -1,29 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Characters/Player/Death.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.680895, 0.21012, 0.21012, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [sub_resource type="ParticlesMaterial" id=1]
-lifetime_randomness = 1.0
+lifetime_randomness = 0.2
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 10.0
+initial_velocity = 300.0
+initial_velocity_random = 0.3
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color = Color( 0.94902, 0.686275, 0, 1 )
+linear_accel = -100.0
+scale = 10.0
+color_ramp = SubResource( 3 )
 anim_speed_random = 1.0
 
 [node name="death" type="Particles2D"]
-modulate = Color( 1, 0.0705882, 0.0705882, 1 )
-self_modulate = Color( 1, 0.458824, 0.458824, 1 )
-scale = Vector2( 10, 10 )
+z_index = -1
 emitting = false
 amount = 360
-lifetime = 2.0
-one_shot = true
+lifetime = 600.0
 speed_scale = 2.24
 explosiveness = 1.0
 randomness = 1.0
 visibility_rect = Rect2( 5, 5, 0, 0 )
+local_coords = false
 draw_order = 1
 process_material = SubResource( 1 )
+script = ExtResource( 1 )

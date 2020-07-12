@@ -33,7 +33,6 @@ tilemap_reference = NodePath("..")
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 64, -64 )
 tilemap_reference = NodePath("../Grid")
-debug_movement = true
 sprite_ref = NodePath("../../Main/Player/Sprite")
 move_speed = 0.6
 
