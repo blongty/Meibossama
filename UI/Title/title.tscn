@@ -96,4 +96,5 @@ margin_right = 561.0
 margin_bottom = 950.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Quit"
+[connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
