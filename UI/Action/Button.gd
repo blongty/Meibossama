@@ -17,7 +17,6 @@ func _ready():
 	
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
-
 	
 func _on_Button_pressed():
 	if !enabled:
@@ -45,8 +44,7 @@ func _on_Button_pressed():
 		print('moved left')
 	
 	enabled = false
-	
-		
+
 func enable(b: bool):
 	enabled = b
 	
@@ -62,11 +60,11 @@ func on_player_ready():
 
 
 func _on_Button_button_up():
-#	on_player_ready()
 	pass
 	
 func _on_player_done_moving():
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
 	on_player_ready()
+
 	enabled = true

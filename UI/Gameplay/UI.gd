@@ -24,7 +24,6 @@ func update_ui_score(s:String):
 func set_highscore(s:String):
 	_score_display.set_high(s)
 
-
 func _on_Player_ready():
 	button.on_player_ready()
 
