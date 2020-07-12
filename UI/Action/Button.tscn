@@ -16,4 +16,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 arrow_icons = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
+[connection signal="button_up" from="." to="." method="_on_Button_button_up"]
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]

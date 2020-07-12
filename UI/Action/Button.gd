@@ -16,7 +16,9 @@ func _ready():
 	
 	choice = randi()%4
 	set_button_icon(arrow_icons[choice])
+	
 
+	
 func _on_Button_pressed():
 	if !enabled:
 		return
@@ -28,6 +30,7 @@ func _on_Button_pressed():
 	# If 1, print something
 	if choice == UP:
 		player.move_up()
+		#player.rotation_degrees()
 		print('moved up')
 	
 	# Else if 2, print something else
@@ -51,3 +54,17 @@ func _on_Button_pressed():
 		
 func enable(b: bool):
 	enabled = b
+	
+func on_player_ready():
+	if choice == 1:
+		player.rotate_right_sprite()
+	elif choice == 0:
+		player.rotate_up_sprite()
+	elif choice == 2:
+		player.rotate_down_sprite()
+	elif choice == 3:
+		player.rotate_left_sprite()
+
+
+func _on_Button_button_up():
+	on_player_ready()

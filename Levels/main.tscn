@@ -25,6 +25,7 @@ Player_Path = NodePath("../../Player")
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 64, -64 )
 tilemap_reference = NodePath("../Grid")
+debug_movement = true
 sprite_ref = NodePath("../../Main/Player/Sprite")
 
 [node name="Backgroun" type="Node2D" parent="Player"]
@@ -77,3 +78,4 @@ margin_top = -349.0
 margin_bottom = -349.0
 script = ExtResource( 8 )
 [connection signal="player_destroyed" from="Player" to="Player/Game Over" method="_on_Player_player_destroyed"]
+[connection signal="ready" from="Player" to="Player/Camera2D/CenterContainer/UI" method="_on_Player_ready"]
