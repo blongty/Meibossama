@@ -100,11 +100,13 @@ func game_over():
 		highscore_file.store_string(str(get_score()))
 		highscore_file.close()
 		UI.set_highscore(str(get_score()))
-		game_over_screen.show_and_update(str(get_score()), str(get_score()))
-	else:
-		game_over_screen.show_and_update(str(get_score()), str(_highscore))
+		
+#		game_over_screen.show_and_update(str(get_score()), str(get_score()))
+#	else:
+#		game_over_screen.show_and_update(str(get_score()), str(_highscore))
 	
 	# End user control
+	game_over_screen.over_menu()
 	UI.button_enable(false)
 	
 func _on_UI_action_button_pressed():
