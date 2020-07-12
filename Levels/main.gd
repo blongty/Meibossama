@@ -3,6 +3,7 @@ extends Node2D
 export(NodePath) var UI_ref
 
 var _score = 0
+var _highscore = 0
 var _time = 0
 var _ongoing = false
 var UI
@@ -12,6 +13,15 @@ signal score_changed
 
 func _ready():
 	UI = get_node(UI_ref)
+	
+	# Reading for existing high score
+	var highscore_file = File.new()
+	highscore_file.open("res://highscore.txt", File.READ)
+	_highscore = int(highscore_file.get_as_text())
+	highscore_file.close()
+	
+	UI.set_highscore(str(_highscore))
+	
 	start_game()
 
 func _process(delta):
@@ -19,7 +29,7 @@ func _process(delta):
 		_time = _time + delta
 		if _score != int(_time):
 			_score = int(_time)
-			emit_signal("score_changed", get_score())
+			emit_signal("score_changed", str(get_score()))
 	
 func start_scoring(b:bool):
 	_ongoing = b
@@ -36,12 +46,14 @@ func _on_player_destroyed():
 	game_over()
 
 func game_over():
-	# Write to file high score
+	# Checking 
 	start_scoring(false)
-	var highscore_file = File.new()
-	highscore_file.open("res://high_score.txt", File.WRITE)
-	highscore_file.store_string(str(get_score()))
-	highscore_file.close()
+	if _score > _highscore:
+		var highscore_file = File.new()
+		highscore_file.open("res://highscore.txt", File.WRITE)
+		highscore_file.store_string(str(get_score()))
+		highscore_file.close()
+		UI.set_highscore(str(_score))
 	
 	# End user control
 	UI.button_enable(false)

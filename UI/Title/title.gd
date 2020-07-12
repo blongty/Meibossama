@@ -1,5 +1,19 @@
 extends Control
 
+export(NodePath) var highscore_ref
+var highscore
+
+func _ready():
+	highscore = get_node(highscore_ref)
+	
+	# Get latest high score
+	var file = File.new()
+	var high_num = file.get_as_text()
+	file.close()
+	
+	# Set high score
+	highscore.set_text('High Score: %s' % high_num)
+
 func _on_Quit_pressed():
 	 get_tree().quit()
 

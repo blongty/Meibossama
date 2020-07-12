@@ -9,10 +9,40 @@ outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[node name="Label" type="Label"]
-margin_right = 200.0
+[node name="Score Display" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+score_num_ref = NodePath("Score/Score")
+high_num_ref = NodePath("High score/Score")
+
+[node name="Score" type="HBoxContainer" parent="."]
+margin_right = 504.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 200, 80 )
+
+[node name="Text" type="Label" parent="Score"]
+margin_right = 350.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 350, 80 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 10
+text = "Score"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Score"]
+margin_left = 354.0
+margin_right = 504.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 150, 80 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -20,7 +50,42 @@ custom_constants/shadow_offset_x = 10
 text = "0"
 align = 1
 valign = 1
-script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="High score" type="HBoxContainer" parent="."]
+margin_top = 84.0
+margin_right = 504.0
+margin_bottom = 164.0
+
+[node name="Text" type="Label" parent="High score"]
+margin_right = 350.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 350, 80 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0.505882, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 10
+text = "High Score"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="High score"]
+margin_left = 354.0
+margin_right = 504.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 150, 80 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0.505882, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 10
+text = "0"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
