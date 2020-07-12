@@ -10,6 +10,7 @@ export(Array, Texture) var arrow_icons
 enum {UP, RIGHT, DOWN, LEFT}
 
 func _ready():
+	grab_focus()
 	enabled = false
 	main = get_node(main_ref)
 	player = main.get_node(main.player_reference)
