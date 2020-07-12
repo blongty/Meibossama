@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/player_final.png" type="Texture" id=2]
 [ext_resource path="res://SE/death.wav" type="AudioStream" id=3]
 [ext_resource path="res://Characters/Player/Emitter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Characters/Player/Death.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Player/Death.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 1 )
@@ -17,6 +19,7 @@ particles_ref = NodePath("Sprite/Particles2D")
 sprite_ref = NodePath("Sprite")
 tween_ref = NodePath("Tween")
 particles_scene = ExtResource( 4 )
+death_ref = NodePath("death")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -36,4 +39,7 @@ shape = SubResource( 1 )
 
 [node name="SEDeath" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+
+[node name="death" parent="." instance=ExtResource( 5 )]
+script = ExtResource( 6 )
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

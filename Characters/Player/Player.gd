@@ -8,18 +8,20 @@ export(NodePath) var tween_ref
 export(PackedScene) var particles_scene
 
 var particles
+export(NodePath) var death_ref
 
 var location = Vector2()
 var speed = 128
 var pos = Vector2(0,0)
 var tween
+var death
 export(float) var move_speed = 0.5
 
 var map
 var sprite
 var root
 var moving = false
-var alive = true
+var alive
 
 signal player_destroyed
 signal done_moving
@@ -30,6 +32,7 @@ func _ready():
 	sprite = get_node(sprite_ref)
 	tween = get_node(tween_ref)
 	particles = get_node(particles_ref)
+	death = get_node(death_ref)
 	
 	init()
 
@@ -46,7 +49,7 @@ func init(retry: bool = false):
 		particles = particles_scene.instance()
 		particles.set_position(Vector2(0, 0))
 		sprite.add_child(particles)
-	
+
 	sprite.set_visible(true)
 
 func _physics_process(delta):
@@ -109,10 +112,12 @@ func move_right():
 		emit_signal("done_moving", alive)
 
 func _on_hitbox_area_entered(area):
-	emit_signal("player_destroyed")
-	alive = false
-	get_node("SEDeath").play()
-	sprite.set_visible(false)
+	if alive == true:
+		emit_signal("player_destroyed")
+		get_node("SEDeath").play()
+		sprite.set_visible(false)
+		death.dead()
+		alive = false
 	
 func rotate_right_sprite():
 	sprite.set_rotation_degrees(0)
