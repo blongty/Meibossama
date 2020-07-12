@@ -49,8 +49,12 @@ __meta__ = {
 }
 arrow_icons = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
 
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 script = ExtResource( 7 )
+
+[connection signal="button_up" from="." to="." method="_on_Button_button_up"]
+
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="." to="AudioStreamPlayer" method="_on_Button_pressed"]
